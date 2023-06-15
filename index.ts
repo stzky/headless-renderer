@@ -45,8 +45,7 @@ export const run = async () => {
       };
     });
   });
-  page && (await page.close());
-  browser && (await browser.close());
+
 
   const {image, metadata} = await new Promise(
     async (rs: (v: { image: Buffer; metadata: any }) => void, rj) => {
@@ -67,7 +66,8 @@ export const run = async () => {
       }
     }
   );
-
+  page && (await page.close());
+  browser && (await browser.close());
   fs.writeFileSync(`./test.png`, image)
   console.log('metadata', metadata)
 };
